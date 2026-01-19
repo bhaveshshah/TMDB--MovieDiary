@@ -1,12 +1,11 @@
 # 🎬 TMDB Movie Diary
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" alt="HTML5" width="30" height="30" />
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="JavaScript" width="30" height="30" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" width="30" height="30" />
-</p>
+<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" alt="HTML5" width="30" height="30" />
+<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="JavaScript" width="30" height="30" />
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" width="30" height="30" />
 
-<p align="center">
+
+<p>
   An interactive movie diary application powered by The Movie Database (TMDB) API. Browse movies, mark your favourites, and manage your personal collection with ease.
 </p>
 
@@ -36,4 +35,9 @@
 
 ## 🚀 Getting Started
 
-### Prerequisit
+### Installation
+This wouldn't need any installations.
+
+### Run the project
+You need a Live server to run this application
+
