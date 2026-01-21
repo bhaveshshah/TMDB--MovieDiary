@@ -20,7 +20,7 @@ async function fetchPopularMovies() {
 
 function createPopularMovieCard (movie){
     const popularMovieCard = document.createElement("div");
-    popularMovieCard.classList.add('bg-white', 'rounded-lg', 'shadow-md', 'p-4', 'flex', 'flex-col', 'item-center', 'text-center');
+    popularMovieCard.classList.add('bg-white', 'rounded-lg', 'shadow-md', 'p-4');
     
     const popularMovieImage = document.createElement('img');
     popularMovieImage.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
@@ -72,7 +72,7 @@ async function fetchLatestMovies() {
 
 function createLatestMovieCard (movie){
     const latestMovieCard = document.createElement("div");
-    latestMovieCard.classList.add('bg-white', 'rounded-lg', 'shadow-md', 'p-4', 'flex', 'flex-col', 'item-center', 'text-center');
+    latestMovieCard.classList.add('bg-white', 'rounded-lg', 'shadow-md', 'p-4');
     
     const latestMovieImage = document.createElement('img');
     latestMovieImage.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
@@ -84,7 +84,7 @@ function createLatestMovieCard (movie){
     latestMovieName.classList.add('text-xl', 'font-bold')
 
     const latestMovieInfo = document.createElement("p");
-    latestMovieInfo.textContent = `Popularity rate: ${movie.popularity}, Synopsis: ${movie.overview}`;
+    latestMovieInfo.textContent = `Release date: ${movie.release_date}, Synopsis: ${movie.overview}`;
     latestMovieInfo.classList.add('text-gray-600');
 
     latestMovieCard.appendChild(latestMovieImage);
@@ -104,3 +104,48 @@ async function displayLatestMovies() {
 };
 
 displayLatestMovies();    
+
+///Third block: all movies
+
+const allMovieContainer = document.getElementById('browse-all-card-container');
+
+////Function to fetch all movies
+
+async function fetchAllMovies() {
+    try {
+        const res = await fetch (`https://api.themoviedb.org/3/trending/all/day?api_key=cc509547e8cb8d5e318b618432577237`);
+        const allMovies = await res.json();
+        return allMovies.results;
+        
+    } catch (error) {
+        console.error('Error fetching movie data: ', error)
+    }
+};
+////Function to create the cards
+
+function createAllMovieCard (movie){
+    const allMovieCard = document.createElement("div");
+    allMovieCard.classList.add('bg-white', 'rounded-lg', 'shadow-md', 'p-4');
+    
+    const allMovieImage = document.createElement('img');
+    allMovieImage.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+    latestMovieImage.alt = movie.title;
+    allMovieImage.classList.add("mb-2");
+    
+    const allMovieCardMovieName = document.createElement("h3");
+    allMovieCardMovieName.textContent = movie.title;
+    allMovieCardMovieName.classList.add('text-xl', 'font-bold')
+
+    const allMovieCardMovieInfo = document.createElement("p");
+    allMovieCardMovieInfo.textContent = `Release date: ${movie.release_date}, Synopsis: ${movie.overview}`;
+    allMovieCardMovieInfo.classList.add('text-gray-600');
+
+    allMovieCard.appendChild(allMovieImage);
+    allMovieCard.appendChild(allMovieCardMovieName);
+    allMovieCard.appendChild(allMovieCardMovieInfo);
+    allMovieContainer.appendChild(allMovieCard);
+    };
+
+////Function to display the cards
+
+
