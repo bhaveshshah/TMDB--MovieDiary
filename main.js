@@ -20,8 +20,37 @@ async function fetchPopularMovies() {
 
 function createPopularMovieCard (movie){
     const popularMovieCard = document.createElement("div");
-    popularMovieCard.classList.add('bg-white', 'rounded-lg', 'shadow-md', 'p-4');
+    popularMovieCard.classList.add(
+        'bg-white',
+        'rounded-lg',
+        'shadow-md',
+        'p-4',
+        'min-w-[200px]',
+        'hover:scale-105',
+        'transition-transform',
+        'duration-300',
+        'relative'
+    );
     
+    const favButton = document.createElement('button');
+    favButton.innerHTML = '♡';
+    favButton.classList.add(
+        'absolute',
+        'top-2',
+        'right-2',
+        'bg-black/60',
+        'hover:bg-black/80',
+        'text-white',
+        'text-xl',
+        'w-9',
+        'h-9',
+        'rounded-full',
+        'flex',
+        'items-center',
+        'justify-center',
+        'transition'
+    );
+
     const popularMovieImage = document.createElement('img');
     popularMovieImage.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
     popularMovieImage.alt = movie.title;
@@ -33,11 +62,12 @@ function createPopularMovieCard (movie){
 
     const popularMovieInfo = document.createElement("p");
     popularMovieInfo.textContent = `Popularity rate: ${movie.popularity}, Synopsis: ${movie.overview}`;
-    popularMovieInfo.classList.add('text-gray-600');
+    popularMovieInfo.classList.add('text-gray-600', 'text-sm', 'line-clamp-3');
 
     popularMovieCard.appendChild(popularMovieImage);
     popularMovieCard.appendChild(popularMovieName);
     popularMovieCard.appendChild(popularMovieInfo);
+    popularMovieCard.appendChild(favButton);
     popularMovieContainer.appendChild(popularMovieCard);
     };
 
@@ -72,12 +102,41 @@ async function fetchLatestMovies() {
 
 function createLatestMovieCard (movie){
     const latestMovieCard = document.createElement("div");
-    latestMovieCard.classList.add('bg-white', 'rounded-lg', 'shadow-md', 'p-4');
+    latestMovieCard.classList.add(
+        'bg-white',
+        'rounded-lg',
+        'shadow-md',
+        'p-4',
+        'min-w-[200px]',
+        'hover:scale-105',
+        'transition-transform',
+        'duration-300',
+        'relative'
+    );
     
     const latestMovieImage = document.createElement('img');
     latestMovieImage.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
     latestMovieImage.alt = movie.title;
     latestMovieImage.classList.add("mb-2");
+
+    const favButton = document.createElement('button');
+    favButton.innerHTML = '♡';
+    favButton.classList.add(
+        'absolute',
+        'top-2',
+        'right-2',
+        'bg-black/60',
+        'hover:bg-black/80',
+        'text-white',
+        'text-xl',
+        'w-9',
+        'h-9',
+        'rounded-full',
+        'flex',
+        'items-center',
+        'justify-center',
+        'transition'
+    );
     
     const latestMovieName = document.createElement("h3");
     latestMovieName.textContent = movie.title;
@@ -85,11 +144,12 @@ function createLatestMovieCard (movie){
 
     const latestMovieInfo = document.createElement("p");
     latestMovieInfo.textContent = `Release date: ${movie.release_date}, Synopsis: ${movie.overview}`;
-    latestMovieInfo.classList.add('text-gray-600');
+    latestMovieInfo.classList.add('text-gray-600', 'text-sm', 'line-clamp-3');
 
     latestMovieCard.appendChild(latestMovieImage);
     latestMovieCard.appendChild(latestMovieName);
     latestMovieCard.appendChild(latestMovieInfo);
+    latestMovieCard.appendChild(favButton);
     latestMovieContainer.appendChild(latestMovieCard);
     };
 
@@ -107,13 +167,13 @@ displayLatestMovies();
 
 ///Third block: all movies
 
-const allMovieContainer = document.getElementById('browse-all-card-container');
+const allMovieContainer = document.getElementById('all-movies-card-container');
 
 ////Function to fetch all movies
 
 async function fetchAllMovies() {
     try {
-        const res = await fetch (`https://api.themoviedb.org/3/trending/all/day?api_key=cc509547e8cb8d5e318b618432577237`);
+        const res = await fetch (`https://api.themoviedb.org/3/trending/all/week?api_key=cc509547e8cb8d5e318b618432577237`);
         const allMovies = await res.json();
         return allMovies.results;
         
@@ -125,27 +185,65 @@ async function fetchAllMovies() {
 
 function createAllMovieCard (movie){
     const allMovieCard = document.createElement("div");
-    allMovieCard.classList.add('bg-white', 'rounded-lg', 'shadow-md', 'p-4');
+    allMovieCard.classList.add(
+        'bg-white',
+        'rounded-lg',
+        'shadow-md',
+        'p-4',
+        'min-w-[200px]',
+        'hover:scale-105',
+        'transition-transform',
+        'duration-300',
+        'relative'
+    );
     
     const allMovieImage = document.createElement('img');
     allMovieImage.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
-    latestMovieImage.alt = movie.title;
+    allMovieImage.alt = movie.title;
     allMovieImage.classList.add("mb-2");
-    
-    const allMovieCardMovieName = document.createElement("h3");
-    allMovieCardMovieName.textContent = movie.title;
-    allMovieCardMovieName.classList.add('text-xl', 'font-bold')
 
-    const allMovieCardMovieInfo = document.createElement("p");
-    allMovieCardMovieInfo.textContent = `Release date: ${movie.release_date}, Synopsis: ${movie.overview}`;
-    allMovieCardMovieInfo.classList.add('text-gray-600');
+    const favButton = document.createElement('button');
+    favButton.innerHTML = '♡';
+    favButton.classList.add(
+        'absolute',
+        'top-2',
+        'right-2',
+        'bg-black/60',
+        'hover:bg-black/80',
+        'text-white',
+        'text-xl',
+        'w-9',
+        'h-9',
+        'rounded-full',
+        'flex',
+        'items-center',
+        'justify-center',
+        'transition'
+    );
+    
+    const allMovieName = document.createElement("h3");
+    allMovieName.textContent = movie.title;
+    allMovieName.classList.add('text-xl', 'font-bold')
+
+    const allMovieInfo = document.createElement("p");
+    allMovieInfo.textContent = `Release date: ${movie.release_date}, Synopsis: ${movie.overview}`;
+    allMovieInfo.classList.add('text-gray-600', 'text-sm', 'line-clamp-3');
 
     allMovieCard.appendChild(allMovieImage);
-    allMovieCard.appendChild(allMovieCardMovieName);
-    allMovieCard.appendChild(allMovieCardMovieInfo);
+    allMovieCard.appendChild(allMovieName);
+    allMovieCard.appendChild(allMovieInfo);
+    allMovieCard.appendChild(favButton);
     allMovieContainer.appendChild(allMovieCard);
     };
 
 ////Function to display the cards
 
+async function displayAllMovies() {
+    const allMovies = await fetchAllMovies();
+    if (!allMovies) return;
+    allMovies.forEach(allMovie => {
+        createAllMovieCard(allMovie);
+    });
+};
 
+displayAllMovies();    
