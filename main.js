@@ -1,3 +1,16 @@
+import { getAllMovies, searchMovies } from "./src/script/api.js";
+
+document.addEventListener("DOMContentLoaded", () => {
+  document
+    .getElementById("search-textbox")
+    .addEventListener("input", (event) => {
+      const query = event.target.value;
+      searchMovies(query).then((result) => {
+        console.log(result);
+      });
+    });
+});
+
 //Code for the movie blocks will go here
 
 const popularMovieContainer = document.getElementById('popular-movies-card-container');
