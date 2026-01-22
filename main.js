@@ -223,7 +223,7 @@ function createAllMovieCard (movie){
     
     const allMovieName = document.createElement("h3");
     allMovieName.textContent = movie.title;
-    allMovieName.classList.add('text-xl', 'font-bold')
+    allMovieName.classList.add('text-xl', 'font-bold');
 
     const allMovieInfo = document.createElement("p");
     allMovieInfo.textContent = `Release date: ${movie.release_date}, Synopsis: ${movie.overview}`;
