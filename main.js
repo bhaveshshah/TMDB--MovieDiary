@@ -32,7 +32,8 @@ async function fetchMovies(url) {
 
 ////function to create the movie card
 
-import { toggleFavoriteMovie } from "./src/script/localstorage.js";
+import { toggleFavoriteMovie, isFavourite } from "./src/script/localstorage.js";
+
 
 function createMovieCard (movie, container, info){
     const movieCard = document.createElement("div");
@@ -67,10 +68,23 @@ function createMovieCard (movie, container, info){
         'transition'
     );
 
-     favButton.addEventListener('click', () => {
-        favButton.classList.toggle('text-red-500');
+    // Initialize button state if movie is already in favorites
+    if (isFavourite(movie.id)) {
+        favButton.classList.add('text-red-500');
+        favButton.innerHTML = '❤️';
+    }
+
+    // Add click event to toggle favorite
+    favButton.addEventListener('click', () => {
         toggleFavoriteMovie(movie.id);
-        
+
+        if (isFavourite(movie.id)) {
+            favButton.classList.add('text-red-500');
+            favButton.innerHTML = '❤️';
+        } else {
+            favButton.classList.remove('text-red-500');
+            favButton.innerHTML = '♡';
+        }
     });
 
     const movieImage = document.createElement('img');
