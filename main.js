@@ -140,7 +140,7 @@ function createLatestMovieCard (movie){
     
     const latestMovieName = document.createElement("h3");
     latestMovieName.textContent = movie.title;
-    latestMovieName.classList.add('text-xl', 'font-bold')
+    latestMovieName.classList.add('text-xl', 'font-bold');
 
     const latestMovieInfo = document.createElement("p");
     latestMovieInfo.textContent = `Release date: ${movie.release_date}, Synopsis: ${movie.overview}`;
