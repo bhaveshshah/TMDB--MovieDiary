@@ -1,4 +1,6 @@
 import { getAllMovies, searchMovies } from "./src/script/api.js";
+import { toggleFavoriteMovie, isFavourite } from "./src/script/localstorage.js";
+
 
 document.addEventListener("DOMContentLoaded", () => {
   document
@@ -31,8 +33,6 @@ async function fetchMovies(url) {
 }
 
 ////function to create the movie card
-
-import { toggleFavoriteMovie, isFavourite } from "./src/script/localstorage.js";
 
 
 function createMovieCard (movie, container, info){
