@@ -7,7 +7,7 @@ function isFavourite(key) {
     return favouriteMovies.has(key);
 }
 
-function toggleFavoriteMovie(id) {
+export function toggleFavoriteMovie(id) {
     const favouriteMovies = new Set(getData(FAVOURITE_KEY));
 
     if(favouriteMovies.has(id)) {

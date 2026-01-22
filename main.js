@@ -32,6 +32,8 @@ async function fetchMovies(url) {
 
 ////function to create the movie card
 
+import { toggleFavoriteMovie } from "./src/script/localstorage.js";
+
 function createMovieCard (movie, container, info){
     const movieCard = document.createElement("div");
     movieCard.classList.add(
@@ -65,6 +67,12 @@ function createMovieCard (movie, container, info){
         'transition'
     );
 
+     favButton.addEventListener('click', () => {
+        favButton.classList.toggle('text-red-500');
+        toggleFavoriteMovie(movie.id);
+        
+    });
+
     const movieImage = document.createElement('img');
     movieImage.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
     movieImage.alt = movie.title;
@@ -83,7 +91,7 @@ function createMovieCard (movie, container, info){
     movieCard.appendChild(movieInfo);
     movieCard.appendChild(favButton);
     container.appendChild(movieCard);
-    };
+};
 
 ////function to display the movies
 
