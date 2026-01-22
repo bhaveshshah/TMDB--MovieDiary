@@ -58,7 +58,7 @@ function createPopularMovieCard (movie){
     
     const popularMovieName = document.createElement("h3");
     popularMovieName.textContent = movie.title;
-    popularMovieName.classList.add('text-xl', 'font-bold')
+    popularMovieName.classList.add('text-xl', 'font-bold');
 
     const popularMovieInfo = document.createElement("p");
     popularMovieInfo.textContent = `Popularity rate: ${movie.popularity}, Synopsis: ${movie.overview}`;
