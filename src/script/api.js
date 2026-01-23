@@ -21,7 +21,7 @@ export async function getMovieById(id) {
     });
     return await response.json();
   } catch (e) {
-    console.log(`Error file fetching all movies: ${e}`);
+    console.log(`Error fetching a movie by id: ${e}`);
     throw e;
   }
 }

@@ -1,11 +1,10 @@
 /// Function for the slider arrows
-import { getData } from "../../script/localstorage.js";
+import { getFavouriteMovies } from "../../script/localstorage.js";
 import { getMovieById } from "../../script/api.js";
 import { createMovieCard } from "../../script/ui.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
-    const favoriteMoviesIds = getData('favourite');
-    const favoriteMovies = await Promise.all(favoriteMoviesIds.map(movieId => getMovieById(movieId)));
+    const favoriteMovies = getFavouriteMovies();
 
     favoriteMovies.forEach(movie => {
         createMovieCard(movie, 'favorite-movies-card-container');
