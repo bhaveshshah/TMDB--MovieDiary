@@ -1,6 +1,6 @@
 const FAVOURITE_KEY = 'favourite';
 
-function getData(key) {
+export function getData(key) {
     try {
         const data = localStorage.getItem(key);
         return data ? JSON.parse(data) : [];
