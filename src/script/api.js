@@ -28,6 +28,19 @@ export async function getAllMovies(year, page = 1) {
   }
 }
 
+export async function getPopularOrLatestMovies( movieType = 'popular' | 'now_playing', page = 1) {
+  try {
+    const response = await fetchFromAPI("/3/movie/" + movieType, {
+      api_key: API_KEY,
+      page: page,
+    });
+    return await response.json();
+  } catch (e) {
+    console.log(`Error file fetching all movies: ${e}`);
+    throw e;
+  }
+}
+
 export async function searchMovies(name) {
   clearTimeout(debounceTimer);
   if (name) {
@@ -48,3 +61,5 @@ export async function searchMovies(name) {
     return getAllMovies(2026);
   }
 }
+
+
