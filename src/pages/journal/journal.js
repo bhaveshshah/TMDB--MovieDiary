@@ -9,15 +9,31 @@ document.addEventListener("DOMContentLoaded", async () => {
     favoriteMovies.forEach(movie => {
         createMovieCard(movie, 'favorite-movies-card-container');
     });
+
+    const favSection = document.getElementById('favorite-movies-block');
+    setupSlider(favSection, 5);
 });
 
-document.querySelectorAll('section').forEach(section => {
+function setupSlider(section, minItems = 5) {
     const container = section.querySelector('.overflow-x-auto');
     const prevBtn = section.querySelector('.prev-btn');
     const nextBtn = section.querySelector('.next-btn');
 
     if (!container || !prevBtn || !nextBtn) return;
 
+    const itemsCount = container.children.length;
+
+    // Disable slider if fewer than minItems
+    if (itemsCount < minItems) {
+        container.classList.remove('overflow-x-auto');
+        container.classList.add('justify-center');
+        prevBtn.classList.add('hidden');
+        nextBtn.classList.add('hidden');
+        container.scrollLeft = 0;
+        return;
+    }
+
+    // Enable slider
     const scrollAmount = container.clientWidth * 0.8;
 
     nextBtn.addEventListener('click', () => {
@@ -27,4 +43,5 @@ document.querySelectorAll('section').forEach(section => {
     prevBtn.addEventListener('click', () => {
         container.scrollLeft -= scrollAmount;
     });
-});
+
+};
