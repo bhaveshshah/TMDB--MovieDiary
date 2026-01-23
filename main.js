@@ -1,48 +1,55 @@
-import { getAllMovies, searchMovies } from "./src/script/api.js";
+import { getAllMovies, getPopularOrLatestMovies, searchMovies } from "./src/script/api.js";
 import { toggleFavoriteMovie, isFavourite } from "./src/script/localstorage.js";
 
 
 document.addEventListener("DOMContentLoaded", () => {
-  document
-    .getElementById("search-textbox")
-    .addEventListener("input", (event) => {
-      const query = event.target.value;
-      searchMovies(query).then((result) => {
-        console.log(result);
-      });
+    document
+        .getElementById("search-textbox")
+        .addEventListener("input", (event) => {
+            const query = event.target.value;
+            searchMovies(query).then((result) => {
+                console.log(result);
+            });
+        });
+
+    getPopularOrLatestMovies('popular').then((movies) => {
+        if (!movies) return;
+
+        movies.results.forEach(movie => {
+            createMovieCard(movie, 'popular-movies-card-container');
+        });
+    })
+
+    getPopularOrLatestMovies('now_playing').then((movies) => {
+        if (!movies) return;
+
+        movies.results.forEach(movie => {
+            createMovieCard(movie, 'latest-release-card-container');
+        });
     });
+
+    getAllMovies(2026).then((movies) => {
+        if (!movies) return;
+
+        movies.results.forEach(movie => {
+            createMovieCard(movie, 'all-movies-card-container');
+        });
+    })
+
 });
 
-//Code for the movie blocks will go here
 
-const popularMovieContainer = document.getElementById('popular-movies-card-container');
-const latestMovieContainer = document.getElementById('latest-release-card-container');
-const allMovieContainer = document.getElementById('all-movies-card-container');
-
-
-////Function to fetch the movies
-
-async function fetchMovies(url) {
-    try {
-        const res = await fetch (url);
-        const movie = await res.json();
-        return movie.results;
-    } catch (error) {
-        console.error('Error fetching movie data:', error);
-    }
-}
-
-////function to create the movie card
-
-
-function createMovieCard (movie, container, info){
+/**
+ * function to create the movie card
+ */
+function createMovieCard (movie, containerId){
     const movieCard = document.createElement("div");
     movieCard.classList.add(
         'bg-white',
         'rounded-lg',
         'shadow-md',
         'p-4',
-        'min-w-[200px]',
+        'min-w-[180px]',
         'hover:scale-105',
         'transition-transform',
         'duration-300',
@@ -97,49 +104,18 @@ function createMovieCard (movie, container, info){
     movieName.classList.add('text-xl', 'font-bold')
 
     const movieInfo = document.createElement("p");
-    movieInfo.textContent = info(movie);
+    movieInfo.textContent =  `Popularity rate: ${movie.popularity}, Synopsis: ${movie.overview}` // info(movie);
     movieInfo.classList.add('text-gray-600', 'text-sm', 'line-clamp-3');
 
     movieCard.appendChild(movieImage);
     movieCard.appendChild(movieName);
     movieCard.appendChild(movieInfo);
     movieCard.appendChild(favButton);
-    container.appendChild(movieCard);
-};
+    document.getElementById(containerId).appendChild(movieCard);
+}
 
-////function to display the movies
 
-async function displayMovies({url, container, infoText}) {
-    const movies = await fetchMovies(url);
-    if (!movies) return;
 
-    movies.forEach(movie => {
-        createMovieCard(movie, container, infoText);
-    });
-};
-
-// Display the movies blocks
-
-displayMovies({
-    url: `https://api.themoviedb.org/3/movie/popular?api_key=cc509547e8cb8d5e318b618432577237`,
-    container: document.getElementById('popular-movies-card-container'),
-    infoText: movie =>
-        `Popularity rate: ${movie.popularity}, Synopsis: ${movie.overview}`
-});
-
-displayMovies({
-    url: 'https://api.themoviedb.org/3/discover/movie?api_key=cc509547e8cb8d5e318b618432577237&include_video=false&primary_release_date.gte=2025-10-01&primary_release_date.lte=2026-01-20',
-    container: document.getElementById('latest-release-card-container'),
-    infoText: movie =>
-        `Release date: ${movie.release_date}, Synopsis: ${movie.overview}`
-});
-
-displayMovies({
-    url: 'https://api.themoviedb.org/3/trending/all/week?api_key=cc509547e8cb8d5e318b618432577237',
-    container: document.getElementById('all-movies-card-container'),
-    infoText: movie =>
-        `Release date: ${movie.release_date}, Synopsis: ${movie.overview}`
-});
 
 /// Function for the slider arrows
 
