@@ -1,18 +1,13 @@
 import { isFavourite, toggleFavoriteMovie } from "./localstorage.js";
 
-function updateFavButtons(movieId) {
-    const fav = isFavourite(movieId);
-
-    document.querySelectorAll(`.fav-btn[data-movie-id="${movieId}"]`)
-        .forEach(btn => {
-            if (fav) {
-                btn.classList.add('text-red-500');
-                btn.innerHTML = '❤️';
-            } else {
-                btn.classList.remove('text-red-500');
-                btn.innerHTML = '♡';
-            }
-        });
+function renderFavState(button, movieId) {
+    if (isFavourite(movieId)) {
+        button.classList.add('text-red-500');
+        button.innerHTML = '❤️';
+    } else {
+        button.classList.remove('text-red-500');
+        button.innerHTML = '♡';
+    }
 }
 
 /**
@@ -54,12 +49,15 @@ export function createMovieCard(movie, containerId) {
     favButton.dataset.movieId = movie.id;
     favButton.classList.add('fav-btn');
 
-    updateFavButtons(movie.id);
+    renderFavState(favButton, movie.id);
 
     // Add click event to toggle favorite
     favButton.addEventListener('click', () => {
         toggleFavoriteMovie(movie.id);
-        updateFavButtons(movie.id);
+
+        document
+            .querySelectorAll(`.fav-btn[data-movie-id="${movie.id}"]`)
+            .forEach(btn => renderFavState(btn, movie.id));
     });
 
     const movieImage = document.createElement('img');
