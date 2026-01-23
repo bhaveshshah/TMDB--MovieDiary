@@ -38,11 +38,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+function updateFavButtons(movieId) {
+    const fav = isFavourite(movieId);
+
+    document.querySelectorAll(`.fav-btn[data-movie-id="${movieId}"]`)
+        .forEach(btn => {
+            if (fav) {
+                btn.classList.add('text-red-500');
+                btn.innerHTML = '❤️';
+            } else {
+                btn.classList.remove('text-red-500');
+                btn.innerHTML = '♡';
+            }
+        });
+}
+
 
 /**
  * function to create the movie card
  */
-function createMovieCard (movie, containerId){
+function createMovieCard(movie, containerId) {
     const movieCard = document.createElement("div");
     movieCard.classList.add(
         'bg-white',
@@ -55,7 +70,7 @@ function createMovieCard (movie, containerId){
         'duration-300',
         'relative'
     );
-    
+
     const favButton = document.createElement('button');
     favButton.innerHTML = '♡';
     favButton.classList.add(
@@ -75,36 +90,28 @@ function createMovieCard (movie, containerId){
         'transition'
     );
 
-    // Initialize button state if movie is already in favorites
-    if (isFavourite(movie.id)) {
-        favButton.classList.add('text-red-500');
-        favButton.innerHTML = '❤️';
-    }
+    favButton.dataset.movieId = movie.id;
+    favButton.classList.add('fav-btn');
+
+    updateFavButtons(movie.id);
 
     // Add click event to toggle favorite
     favButton.addEventListener('click', () => {
         toggleFavoriteMovie(movie.id);
-
-        if (isFavourite(movie.id)) {
-            favButton.classList.add('text-red-500');
-            favButton.innerHTML = '❤️';
-        } else {
-            favButton.classList.remove('text-red-500');
-            favButton.innerHTML = '♡';
-        }
+        updateFavButtons(movie.id);
     });
 
     const movieImage = document.createElement('img');
     movieImage.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
     movieImage.alt = movie.title;
     movieImage.classList.add("mb-2");
-    
+
     const movieName = document.createElement("h3");
     movieName.textContent = movie.title || movie.name || 'undefined';
     movieName.classList.add('text-xl', 'font-bold')
 
     const movieInfo = document.createElement("p");
-    movieInfo.textContent =  `Popularity rate: ${movie.popularity}, Synopsis: ${movie.overview}` // info(movie);
+    movieInfo.textContent = `Popularity rate: ${movie.popularity}, Synopsis: ${movie.overview}` // info(movie);
     movieInfo.classList.add('text-gray-500', 'text-sm', 'line-clamp-3');
 
     movieCard.appendChild(movieImage);
@@ -126,7 +133,7 @@ document.querySelectorAll('section').forEach(section => {
 
     if (!container || !prevBtn || !nextBtn) return;
 
-    const scrollAmount = container.clientWidth * 0.8; 
+    const scrollAmount = container.clientWidth * 0.8;
 
     nextBtn.addEventListener('click', () => {
         container.scrollLeft += scrollAmount;
