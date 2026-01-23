@@ -49,7 +49,7 @@ function createMovieCard (movie, containerId){
         'rounded-lg',
         'shadow-md',
         'p-4',
-        'min-w-[180px]',
+        'min-w-[200px]',
         'hover:scale-105',
         'transition-transform',
         'duration-300',
@@ -105,7 +105,7 @@ function createMovieCard (movie, containerId){
 
     const movieInfo = document.createElement("p");
     movieInfo.textContent =  `Popularity rate: ${movie.popularity}, Synopsis: ${movie.overview}` // info(movie);
-    movieInfo.classList.add('text-gray-600', 'text-sm', 'line-clamp-3');
+    movieInfo.classList.add('text-gray-500', 'text-sm', 'line-clamp-3');
 
     movieCard.appendChild(movieImage);
     movieCard.appendChild(movieName);
