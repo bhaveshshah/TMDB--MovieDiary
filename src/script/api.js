@@ -14,6 +14,18 @@ async function fetchFromAPI(endpoint, params = {}) {
   }
 }
 
+export async function getMovieById(id) {
+  try {
+    const response = await fetchFromAPI(`/3/movie/${id}`, {
+      api_key: API_KEY,
+    });
+    return await response.json();
+  } catch (e) {
+    console.log(`Error fetching a movie by id: ${e}`);
+    throw e;
+  }
+}
+
 export async function getAllMovies(year, page = 1) {
   try {
     const response = await fetchFromAPI("/3/discover/movie", {
@@ -28,7 +40,7 @@ export async function getAllMovies(year, page = 1) {
   }
 }
 
-export async function getPopularOrLatestMovies( movieType = 'popular' | 'now_playing', page = 1) {
+export async function getPopularOrLatestMovies(movieType = 'popular' | 'now_playing', page = 1) {
   try {
     const response = await fetchFromAPI("/3/movie/" + movieType, {
       api_key: API_KEY,

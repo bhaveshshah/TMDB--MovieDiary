@@ -53,7 +53,7 @@ export function createMovieCard(movie, containerId) {
 
     // Add click event to toggle favorite
     favButton.addEventListener('click', () => {
-        toggleFavoriteMovie(movie.id);
+        toggleFavoriteMovie(movie);
 
         document
             .querySelectorAll(`.fav-btn[data-movie-id="${movie.id}"]`)

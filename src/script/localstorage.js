@@ -1,6 +1,6 @@
 const FAVOURITE_KEY = 'favourite';
 
-function getData(key) {
+export function getData(key) {
     try {
         const data = localStorage.getItem(key);
         return data ? JSON.parse(data) : [];
@@ -18,21 +18,33 @@ function setData(key, data) {
     }
 }
 
-export function toggleFavoriteMovie(id) {
-    const favouriteMovies = new Set(getData(FAVOURITE_KEY)); // convert array -> set
+export function toggleFavoriteMovie(movie) {
+    const favouriteMovies = getData(FAVOURITE_KEY);
 
-    if (favouriteMovies.has(id)) {
-        favouriteMovies.delete(id);
+    const index = favouriteMovies.findIndex(
+        fav => fav.id === movie.id
+    );
+
+    if (index !== -1) {
+        favouriteMovies.splice(index, 1);
     } else {
-        favouriteMovies.add(id);
+        favouriteMovies.push({
+            id: movie.id,
+            title: movie.title,
+            poster_path: movie.poster_path,
+            overview: movie.overview,
+            popularity: movie.popularity,
+            name: movie.name
+        });
     }
 
-    setData(FAVOURITE_KEY, Array.from(favouriteMovies)); // convert set -> array
+    setData(FAVOURITE_KEY, favouriteMovies);
 }
 
 export function isFavourite(id) {
-    const favouriteMovies = new Set(getData(FAVOURITE_KEY));
-    return favouriteMovies.has(id);
+    return getData(FAVOURITE_KEY).some(
+        fav => fav.id === id
+    );
 }
 
 export function getFavouriteMovies() {
