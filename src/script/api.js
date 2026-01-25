@@ -40,7 +40,10 @@ export async function getAllMovies(year, page = 1) {
   }
 }
 
-export async function getPopularOrLatestMovies(movieType = 'popular' | 'now_playing', page = 1) {
+export async function getPopularOrLatestMovies(
+  movieType = "popular" | "now_playing",
+  page = 1,
+) {
   try {
     const response = await fetchFromAPI("/3/movie/" + movieType, {
       api_key: API_KEY,
@@ -73,5 +76,3 @@ export async function searchMovies(name) {
     return getAllMovies(2026);
   }
 }
-
-
