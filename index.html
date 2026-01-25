@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -12,8 +12,9 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body class="bg-gradient-to-b from-gray-900 via-gray-800 to-black">
-
-    <nav class="relative after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10">
+    <nav
+      class="relative after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10"
+    >
       <div class="mx-auto max-w-15xl px-2 sm:px-6 lg:px-8">
         <div class="relative flex h-16 items-center justify-between">
           <div
@@ -34,17 +35,15 @@
                 <a
                   href="./src/pages/journal/journal.html"
                   class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white"
-                  >Journal</a>
+                  >Journal</a
+                >
               </div>
             </div>
           </div>
         </div>
       </div>
     </nav>
-    <section
-      class="relative pb-20 flex items-start overflow-hidden"
-      id="hero"
-    >
+    <section class="relative pb-20 flex items-start overflow-hidden" id="hero">
       <div
         class="absolute inset-0 bg-cover bg-center filter brightness-50 main-background"
       ></div>
@@ -61,103 +60,98 @@
       </div>
     </section>
 
-  <!-- Cards container section -->
+    <!-- Cards container section -->
 
-  <section id="popular-movies-block" class="w-full my-10">
+    <section id="popular-movies-block" class="w-full my-10">
+      <h2 class="text-lg md:text-3xl text-gray-100 mb-8 text-center">
+        Popular Movies
+      </h2>
 
-    <h2 class="text-lg md:text-3xl text-gray-100 mb-8 text-center">
-      Popular Movies
-    </h2>
+      <div class="relative max-w-6xl mx-auto">
+        <!-- Left Arrow -->
+        <button
+          class="prev-btn absolute -left-4 top-1/2 -translate-y-1/2 z-10 bg-black/60 hover:bg-black/80 text-white p-3 rounded-full"
+        >
+          ◀
+        </button>
 
+        <!-- Slider -->
+        <div
+          id="popular-movies-card-container"
+          class="flex-nowrap movie-slider flex gap-4 px-4 overflow-x-auto overflow-y-hidden scroll-smooth"
+        >
+          <!-- cards will be inserted here -->
+        </div>
 
-    <div class="relative max-w-6xl mx-auto">
-
-      <!-- Left Arrow -->
-      <button class="prev-btn absolute -left-4 top-1/2 -translate-y-1/2 z-10
-             bg-black/60 hover:bg-black/80 text-white p-3 rounded-full">
-        ◀
-      </button>
-
-      <!-- Slider -->
-      <div id="popular-movies-card-container"
-        class="flex-nowrap movie-slider flex gap-4 px-4 overflow-x-auto overflow-y-hidden scroll-smooth">
-      
-        <!-- cards will be inserted here -->
-      
+        <!-- Right Arrow -->
+        <button
+          class="next-btn absolute -right-4 top-1/2 -translate-y-1/2 z-10 bg-black/60 hover:bg-black/80 text-white p-3 rounded-full"
+        >
+          ▶
+        </button>
       </div>
+    </section>
 
-      <!-- Right Arrow -->
-      <button class="next-btn absolute -right-4 top-1/2 -translate-y-1/2 z-10
-             bg-black/60 hover:bg-black/80 text-white p-3 rounded-full">
-        ▶
-      </button>
+    <section id="latest-release-block" class="w-full my-10">
+      <h2 class="text-lg md:text-3xl text-gray-100 mb-8 text-center">
+        Latest Releases
+      </h2>
 
-    </div>
-  </section>
+      <div class="relative max-w-6xl mx-auto">
+        <!-- Left Arrow -->
+        <button
+          class="prev-btn absolute -left-4 top-1/2 -translate-y-1/2 z-10 bg-black/60 hover:bg-black/80 text-white p-3 rounded-full"
+        >
+          ◀
+        </button>
 
+        <!-- Slider -->
+        <div
+          id="latest-release-card-container"
+          class="flex-nowrap movie-slider flex gap-4 px-4 overflow-x-auto overflow-y-hidden scroll-smooth"
+        >
+          <!-- cards will be inserted here -->
+        </div>
 
-  <section id="latest-release-block" class="w-full my-10">
-
-    <h2 class="text-lg md:text-3xl text-gray-100 mb-8 text-center">
-      Latest Releases
-    </h2>
-
-
-    <div class="relative max-w-6xl mx-auto">
-
-      <!-- Left Arrow -->
-      <button class="prev-btn absolute -left-4 top-1/2 -translate-y-1/2 z-10
-             bg-black/60 hover:bg-black/80 text-white p-3 rounded-full">
-        ◀
-      </button>
-
-      <!-- Slider -->
-      <div id="latest-release-card-container" class="flex-nowrap movie-slider flex gap-4 px-4 overflow-x-auto overflow-y-hidden scroll-smooth">
-      
-        <!-- cards will be inserted here -->
-      
+        <!-- Right Arrow -->
+        <button
+          class="next-btn absolute -right-4 top-1/2 -translate-y-1/2 z-10 bg-black/60 hover:bg-black/80 text-white p-3 rounded-full"
+        >
+          ▶
+        </button>
       </div>
+    </section>
 
-      <!-- Right Arrow -->
-      <button class="next-btn absolute -right-4 top-1/2 -translate-y-1/2 z-10
-             bg-black/60 hover:bg-black/80 text-white p-3 rounded-full">
-        ▶
-      </button>
+    <section id="all-movies-block" class="w-full my-10">
+      <h2 class="text-lg md:text-3xl text-gray-100 mb-8 text-center">
+        All Movies
+      </h2>
 
-    </div>
-  </section>
+      <div class="relative max-w-6xl mx-auto">
+        <!-- Left Arrow -->
+        <button
+          class="prev-btn absolute -left-4 top-1/2 -translate-y-1/2 z-10 bg-black/60 hover:bg-black/80 text-white p-3 rounded-full"
+        >
+          ◀
+        </button>
 
-  <section id="all-movies-block" class="w-full my-10">
+        <!-- Slider -->
+        <div
+          id="all-movies-card-container"
+          class="flex-nowrap movie-slider flex gap-4 px-4 overflow-x-auto overflow-y-hidden scroll-smooth"
+        >
+          <!-- cards will be inserted here -->
+        </div>
 
-    <h2 class="text-lg md:text-3xl text-gray-100 mb-8 text-center">
-      All Movies
-    </h2>
-
-    <div class="relative max-w-6xl mx-auto">
-
-      <!-- Left Arrow -->
-      <button class="prev-btn absolute -left-4 top-1/2 -translate-y-1/2 z-10
-             bg-black/60 hover:bg-black/80 text-white p-3 rounded-full">
-        ◀
-      </button>
-
-      <!-- Slider -->
-      <div id="all-movies-card-container"
-        class="flex-nowrap movie-slider flex gap-4 px-4 overflow-x-auto overflow-y-hidden scroll-smooth">
-
-        <!-- cards will be inserted here -->
-      
+        <!-- Right Arrow -->
+        <button
+          class="next-btn absolute -right-4 top-1/2 -translate-y-1/2 z-10 bg-black/60 hover:bg-black/80 text-white p-3 rounded-full"
+        >
+          ▶
+        </button>
       </div>
-
-      <!-- Right Arrow -->
-      <button class="next-btn absolute -right-4 top-1/2 -translate-y-1/2 z-10
-             bg-black/60 hover:bg-black/80 text-white p-3 rounded-full">
-        ▶
-      </button>
-
-    </div>
-  </section>
-  <!-- End of cards container section -->
+    </section>
+    <!-- End of cards container section -->
     <script src="main.js" type="module"></script>
   </body>
 </html>
