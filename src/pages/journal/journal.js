@@ -11,10 +11,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     const favSection = document.getElementById('favorite-movies-block');
-    setupSlider(favSection, 5);
+    setupSlider(favSection);
 });
 
-function setupSlider(section, minItems = 5) {
+function setupSlider(section, minItems = 6) {
     const container = section.querySelector('.overflow-x-auto');
     const prevBtn = section.querySelector('.prev-btn');
     const nextBtn = section.querySelector('.next-btn');

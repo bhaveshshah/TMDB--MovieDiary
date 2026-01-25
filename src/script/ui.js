@@ -21,6 +21,7 @@ export function createMovieCard(movie, containerId) {
         'shadow-md',
         'p-4',
         'min-w-[200px]',
+        'w-[200px]',
         'hover:scale-105',
         'transition-transform',
         'duration-300',
