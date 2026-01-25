@@ -14,18 +14,19 @@ function renderFavState(button, movieId) {
  * function to create the movie card
  */
 export function createMovieCard(movie, containerId) {
-  const movieCard = document.createElement("div");
-  movieCard.classList.add(
-    "bg-white",
-    "rounded-lg",
-    "shadow-md",
-    "p-4",
-    "min-w-[200px]",
-    "hover:scale-105",
-    "transition-transform",
-    "duration-300",
-    "relative",
-  );
+    const movieCard = document.createElement("div");
+    movieCard.classList.add(
+        'bg-white',
+        'rounded-lg',
+        'shadow-md',
+        'p-4',
+        'min-w-[200px]',
+        'w-[200px]',
+        'hover:scale-105',
+        'transition-transform',
+        'duration-300',
+        'relative'
+    );
 
   const favButton = document.createElement("button");
   favButton.innerHTML = "♡";
