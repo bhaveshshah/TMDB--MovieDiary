@@ -59,20 +59,21 @@ export async function getPopularOrLatestMovies(
 export async function searchMovies(name) {
   clearTimeout(debounceTimer);
   if (name) {
-    debounceTimer = setTimeout(async () => {
-      try {
-        const response = await fetchFromAPI("/3/search/movie", {
-          api_key: API_KEY,
-          query: name,
-        });
+    return new Promise((resolve, reject) => {
+      debounceTimer = setTimeout(async () => {
+        try {
+          const response = await fetchFromAPI("/3/search/movie", {
+            api_key: API_KEY,
+            query: name,
+          });
 
-        return await response.json();
-      } catch (e) {
-        console.log(`Error fetching search results: ${e}`);
-        throw e;
-      }
-    }, 2000);
-  } else {
-    return getAllMovies(2026);
+          resolve(response.json());
+        } catch (e) {
+          console.log(`Error fetching search results: ${e}`);
+          reject(e);
+          throw e;
+        }
+      }, 1000);
+    });
   }
 }
